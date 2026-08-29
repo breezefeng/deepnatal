@@ -1,6 +1,6 @@
 {
   "name": "deepnatal",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "//mcpName": "Ownership proof for the MCP Registry: it downloads the published tarball and checks this field equals the server name in server.json. GitHub-based auth requires the io.github.<user>/ prefix. It has to be in the PUBLISHED package, so adding it here does nothing until a version carrying it reaches npm.",
   "mcpName": "io.github.breezefeng/deepnatal",
   "description": "Natal chart engine that cross-verifies every result three independent ways — and refuses to answer when it cannot. Handles historical DST (Taiwan 1979, China 1986-1991) that most astrology tools get wrong by a full hour. Ships as both a library and an MCP server.",
