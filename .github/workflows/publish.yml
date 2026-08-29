@@ -1,0 +1,55 @@
+# Publish to npm via trusted publishing (OIDC) — no tokens involved.
+#
+# ⚠️ This workflow does nothing until a one-time setup is done on npmjs.com:
+#
+#      npmjs.com → Packages → deepnatal → Settings → Trusted Publisher
+#        Publisher:  GitHub Actions
+#        Repository: breezefeng/deepnatal
+#        Workflow:   publish.yml        ← exact filename, case-sensitive
+#
+#    That page only exists once the package exists, so v0.1.0 has to be
+#    published by hand first. Every release after that can come from here.
+#
+# ── Why bother, instead of just storing an NPM_TOKEN secret ──────────
+#
+# npm is closing that path. Granular access tokens that bypass 2FA already
+# lost account and package management rights, and per npm's own changelog
+# they lose direct publish around January 2027. A long-lived write token in
+# CI is also the exact credential that supply-chain attacks go looking for.
+#
+# OIDC issues a short-lived, workflow-scoped credential per run. Nothing
+# to leak, nothing to rotate. It also generates provenance automatically,
+# so anyone can verify this tarball was built from this commit — which is
+# the same argument the package itself makes about verifiable results.
+#
+# Requires npm CLI >= 11.5.1 and Node >= 22.14.0.
+
+name: publish
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+  id-token: write # required for OIDC — without it npm falls back to token auth and fails
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest # self-hosted runners are not supported by trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+      - run: npm run build
+
+      # Never publish a build that fails its own verification suite.
+      # The package's entire claim is that results are cross-checked;
+      # shipping an unverified tarball would falsify the README.
+      - run: TZ=America/New_York npm run test:dist
+
+      - run: npm publish
