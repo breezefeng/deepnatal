@@ -1,6 +1,6 @@
 {
   "name": "deepnatal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Natal chart engine that cross-verifies every result three independent ways — and refuses to answer when it cannot. Handles historical DST (Taiwan 1979, China 1986-1991) that most astrology tools get wrong by a full hour. Ships as both a library and an MCP server.",
   "type": "module",
   "license": "MIT",
