@@ -39,6 +39,10 @@
   "engines": {
     "node": ">=20"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "bin": {
     "deepnatal-mcp": "dist/mcp.js"
   },
