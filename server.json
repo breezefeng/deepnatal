@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.breezefeng/deepnatal",
+  "description": "Natal charts cross-verified three ways. Refuses to answer rather than guess.",
+  "websiteUrl": "https://deepnatal.com",
+  "repository": {
+    "url": "https://github.com/breezefeng/deepnatal",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "deepnatal",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
