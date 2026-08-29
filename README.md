@@ -8,7 +8,7 @@ Ships as both a TypeScript library and an [MCP](https://modelcontextprotocol.io)
 npx -y deepnatal-mcp
 ```
 
-[![npm](https://img.shields.io/npm/v/deepnatal)](https://www.npmjs.com/package/deepnatal) [![test](https://github.com/breezefeng/deepnatal/actions/workflows/test.yml/badge.svg)](https://github.com/breezefeng/deepnatal/actions/workflows/test.yml) [![license](https://img.shields.io/npm/l/deepnatal)](./LICENSE)
+[![npm](https://img.shields.io/npm/v/deepnatal)](https://www.npmjs.com/package/deepnatal) [![test](https://github.com/breezefeng/deepnatal/actions/workflows/test.yml/badge.svg)](https://github.com/breezefeng/deepnatal/actions/workflows/test.yml) [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 
 ---
 
