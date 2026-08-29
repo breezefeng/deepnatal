@@ -1,0 +1,23 @@
+# The package claims results are verified three independent ways.
+# This runs that verification on every push, so the claim is checkable
+# by anyone rather than asserted in a README.
+name: test
+on:
+  push: { branches: [main] }
+  pull_request:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['20.x', '22.x', '24.x']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
+      # Timezone correctness is the whole point; run the suite from a
+      # non-UTC host clock so an accidental reliance on the local zone shows up.
+      - run: TZ=America/New_York npm run test:dist

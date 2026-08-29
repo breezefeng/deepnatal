@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    /*
+     * 源码沿用 `import './ephemeris.ts'` 的写法（Node 22 strip-types 风格），
+     * 这两个开关让 tsc 接受 .ts 后缀并在产物里改写成 .js。
+     * 没有它们，dist 里的 import 会指向不存在的 .ts 文件，装包的人一跑就炸。
+     */
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts"]
+}

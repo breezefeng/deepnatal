@@ -1,0 +1,78 @@
+{
+  "name": "deepnatal",
+  "version": "0.1.0",
+  "description": "Natal chart engine that cross-verifies every result three independent ways — and refuses to answer when it cannot. Handles historical DST (Taiwan 1979, China 1986-1991) that most astrology tools get wrong by a full hour. Ships as both a library and an MCP server.",
+  "type": "module",
+  "license": "MIT",
+  "author": "deepnatal.com",
+  "homepage": "https://deepnatal.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breezefeng/deepnatal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/breezefeng/deepnatal/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "astrology",
+    "natal-chart",
+    "birth-chart",
+    "horoscope",
+    "ascendant",
+    "rising-sign",
+    "ephemeris",
+    "placidus",
+    "timezone",
+    "dst",
+    "星盤",
+    "星盘",
+    "上升星座",
+    "占星",
+    "本命盤",
+    "西洋占星術",
+    "ホロスコープ",
+    "출생차트"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "deepnatal-mcp": "dist/mcp.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./fixtures": {
+      "types": "./dist/fixtures.d.ts",
+      "import": "./dist/fixtures.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
+    "test": "node --experimental-strip-types src/selftest.ts",
+    "test:dist": "node dist/selftest.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "astronomy-engine": "^2.1.19",
+    "circular-natal-horoscope-js": "^1.1.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.3.0",
+    "typescript": "^5.9.0"
+  }
+}
