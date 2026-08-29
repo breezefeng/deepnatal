@@ -38,8 +38,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest # self-hosted runners are not supported by trusted publishing
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # v6 rather than the newer v7: this is the pairing npm's own trusted
+      # publishing docs use, so it is the combination known to work with OIDC.
+      # v4 still ran on the deprecated Node 20 action runtime.
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
